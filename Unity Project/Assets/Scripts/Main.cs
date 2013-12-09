@@ -7,17 +7,21 @@ public class Main : MonoBehaviour {
 	private bool _pressRight = false;
 	private bool _pressUp = false;
 	private bool _pressDown = false;
+	private bool _pressJump = false;
+	private float _speed = 6.0F;
+	private float _jumpSpeed = 8.0F;
+	private float _gravity = 20.0F;
+	private Vector3 _posGO = Vector3.zero;
+	private CharacterController _controller;
 
-
-	// Use this for initialization
 	void Start () {
-
+		_controller = GetComponent<CharacterController>();
 	}	
 
 	void Update () {
 
 		// keys press
-		if(Input.GetKeyDown(KeyCode.LeftArrow))
+		/*if(Input.GetKeyDown(KeyCode.LeftArrow))
 		{
 			_pressLeft = true;
 		}
@@ -58,6 +62,11 @@ public class Main : MonoBehaviour {
 			_pressDown = false;
 		}
 
+		if(Input.GetKeyUp(KeyCode.Space))
+		{
+			_pressJump = Input.GetKeyUp(KeyCode.Space);
+		}
+
 		// moving right or left
 		if(_pressRight)
 		{
@@ -67,9 +76,34 @@ public class Main : MonoBehaviour {
 		if(_pressLeft)
 		{
 			gameObject.transform.Translate(new Vector2(Time.deltaTime*-2,0));
-		}
+		}*/
 
-		//
+
+		_pressLeft = Input.GetKeyDown(KeyCode.LeftArrow);
+		_pressRight = Input.GetKeyDown(KeyCode.RightArrow);
+		_pressUp = Input.GetKeyDown(KeyCode.UpArrow);
+		_pressDown = Input.GetKeyDown(KeyCode.DownArrow);
+		
+		/*_pressLeft = Input.GetKeyUp(KeyCode.LeftArrow);
+		_pressRight = Input.GetKeyUp(KeyCode.RightArrow);
+		_pressUp = Input.GetKeyUp(KeyCode.UpArrow);	
+		_pressDown = Input.GetKeyUp(KeyCode.DownArrow);	*/
+		_pressJump = Input.GetKeyUp(KeyCode.Space);
+
+		// Salto
+		if(_controller.isGrounded)
+		{
+			Debug.Log("Colisionando");
+			_posGO = new Vector3(Input.GetAxis("Horizontal"), 0,0);
+			_posGO = transform.TransformDirection(_posGO);
+			_posGO *= _speed;
+			if(_pressJump)
+			{
+				_posGO.y = _jumpSpeed;
+			}
+		}
+		_posGO.y -= _gravity* Time.deltaTime;
+		_controller.Move(_posGO*Time.deltaTime);
 	}
 
 

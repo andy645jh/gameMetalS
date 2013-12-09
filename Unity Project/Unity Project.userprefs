@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Main.cs">
     <Files>
-      <File FileName="Assets\Scripts\InputManager.cs" Line="7" Column="3" />
-      <File FileName="Assets\Scripts\Main.cs" Line="69" Column="31" />
+      <File FileName="Assets\Scripts\Main.cs" Line="78" Column="69" />
+      <File FileName="..\..\Elkin\WordPlay_game\unity project\Assets\Scripts\Level\Level.cs" Line="521" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
